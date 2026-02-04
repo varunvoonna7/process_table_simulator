@@ -46,17 +46,75 @@ void BubbleSortByPriority(Process table[],int n){
 	
 	
 }
-void InsertionSortByPid(){
+void InsertionSortByPid(Process table[],int n){
+		int i,j,key;
+	for(i=1;i<n;i++)
+	{
+        key=arr[i];
+		j=i-1;
 	
+	while(j>=0 && (arr[j]>key))
+	{
+		arr[j+1]=arr[j];
+		j--;
+	}
+	arr[j+1]=key;
 }
-void shellSortByBT(){
-	
+void shellSortByBT(Process table[],int n){
+	int i,j,gap,key;
+	for(int gap=n;gap>=1;gap=gap/2)
+	{
+		for(i=gap;i<n;i++)
+		{
+			key = arr[i];
+			j = i-gap;
+			while(gap>=0 && (arr[j]>key))
+			{
+				arr[j+gap] = arr[j];
+				j = j-gap;
+			}
+			arr[j+1]=key;
+		}
+	}
 }
-void linearSearchByPid(){
-	
+void linearSearchByPid(Process table[],int n,int key){
+	int found = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key) {
+            printf("Element found at index %d\n", i);
+            found = 1;
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("Element not found\n");
+    }
 }
-void BinarySearchByPid(){
-	
+void BinarySearchByPid(Process table,int n,int key){
+	 int low = 0, high = n - 1, mid;
+    int found = 0;
+
+    while (low <= high) {
+        mid = (low + high) / 2;
+
+        if (arr[mid] == key) {
+            printf("Element found at index %d\n", mid);
+            found = 1;
+            break;
+        } 
+        else if (arr[mid] < key) {
+            low = mid + 1;
+        } 
+         else {
+            high = mid - 1;
+        }
+    }
+
+    if (!found) {
+        printf("Element not found\n");
+    }
 }
 main(){
  Process table[SIZE];
@@ -80,4 +138,3 @@ main(){
     
 	
 }
-
